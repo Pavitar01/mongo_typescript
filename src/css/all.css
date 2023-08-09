@@ -1,0 +1,99 @@
+.parent {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.parent .left {
+  width: 50%;
+  height: 500px;
+  padding: 10px;
+  float: left;
+}
+::-webkit-scrollbar {
+  width: 1%;
+}
+.showproduct {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  overflow-y: scroll;
+  flex-direction: column;
+}
+.cards {
+  margin-top: 10px;
+}
+.products {
+  width: 50%;
+  height: 400px;
+  gap: 20px;
+}
+.left::-webkit-scrollbar {
+  width: 1%;
+}
+.parent .right {
+  width: 50%;
+  float: right;
+}
+.form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 10px;
+  border: 1px solid black;
+  border-radius: 10px;
+  width: 500px;
+  height: 400px;
+}
+
+.form input {
+  width: 200px;
+  height: 30px;
+  margin-top: 10px;
+}
+.form button {
+  width: 210px;
+  height: 30px;
+  margin-top: 10px;
+  font-size: 20px;
+  color: white;
+  text-transform: capitalize;
+  background-color: rgba(0, 0, 255, 0.455);
+}
+.login {
+  width: 300px;
+  height: 299px;
+  border: 2px solid white;
+  border-radius: 10px;
+  text-align: center;
+  color: rgb(90, 73, 73);
+  position: relative;
+}
+.login button {
+  width: 90%;
+  background-color: white;
+  height: 70px;
+  border: 1px solid white;
+  border-radius: 10px;
+  font-size: 20px;
+  font-weight: 800;
+  margin-top: 10%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  cursor: pointer;
+  background-image: url("https://onymos.com/wp-content/uploads/2020/10/google-signin-button-1024x260.png");
+}
+
+@media only screen and (max-width: 1023px) {
+  body {
+    background-color: lightblue;
+
+  }
+  .parent{
+    min-width: 1095px;
+  }
+}

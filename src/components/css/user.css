@@ -1,0 +1,36 @@
+.user {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  right: 10px;
+  border: 1px solid black;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+
+  background-color: white;
+  margin-top: 20px;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.user img{
+    border-radius: 100%;
+    
+}
+i{
+    cursor: pointer;
+}
+.user h5{
+    margin-top: 20px;
+    width: 90%;
+    text-align: center;
+    overflow: hidden;
+}
+.user p{
+    font-size: 13px;
+    margin-top: 20px;
+    width: 90%;
+    text-align: center;
+    overflow: hidden;
+}
