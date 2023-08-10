@@ -11,6 +11,7 @@ const Nav = () => {
   const auth = getAuth(app);
   const dispatch = useDispatch();
   const user = useAppSelector((state) => state.user.user);
+  let istrue = localStorage.getItem("login");
   return (
     <nav className="navbar navbar-light bg-light">
       <a className="navbar-brand" href="#">
@@ -18,7 +19,7 @@ const Nav = () => {
         &nbsp;Instapost
       </a>
       <div>
-        {user.length !== 0 && (
+        {istrue && (
           <>
             <i
               className="fa-solid fa-right-from-bracket"

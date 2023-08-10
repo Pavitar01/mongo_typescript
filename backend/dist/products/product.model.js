@@ -14,5 +14,8 @@ exports.ProductSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    user: {
+        type: Object,
+    },
 });
 //# sourceMappingURL=product.model.js.map

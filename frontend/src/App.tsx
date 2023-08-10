@@ -14,10 +14,11 @@ const App = () => {
   },[]);
   return (
     <div className="parent">
+      
       {isTrue || selector.length!==0 ? (
         <>
           <div className="left">
-            <Showproduct num={val} />
+            <Showproduct num={val} setVal={setVal}/>
           </div>
           <div className="right">
             <h1>

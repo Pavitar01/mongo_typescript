@@ -13,8 +13,10 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <Nav />
-      <App />
+      <div className="main" style={{width:"100%",height:"100vh",overflow:"hidden"}}>
+        <Nav />
+        <App />
+      </div>
     </Provider>
   </React.StrictMode>
 );

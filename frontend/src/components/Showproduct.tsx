@@ -1,17 +1,20 @@
 import React, { useEffect, useState } from "react";
-import { message } from "antd";
+import { Pagination, message } from "antd";
 import axios from "axios";
 import Cards from "./Card";
 type valTypes = {
   num: boolean | undefined;
+  setVal: any;
 };
 const Showproduct = (props: valTypes) => {
   const [messageApi, contextHolder] = message.useMessage();
   const [prodArray, setProdArray] = useState([]);
-
+  const [page, setPage] = useState<number>(1);
   useEffect(() => {
     const fetchData = async () => {
-      const data = await axios.get("http://localhost:3000/products/getproduct");
+      const data = await axios.post(
+        `http://localhost:3000/products/get-products/${page}`
+      );
       messageApi.open({
         type: "success",
         content: "Product fetched SuccessFully ",
@@ -19,15 +22,18 @@ const Showproduct = (props: valTypes) => {
       setProdArray(data.data);
     };
     fetchData();
-  }, [props.num]);
+  }, [props.num, page]);
   return (
     <div className="showproduct">
       {contextHolder}
       <div className="products">
-        {prodArray.length !== 0 ? (
-          prodArray.map((i: any) => (
+        {prodArray?.length !== 0 ? (
+          prodArray?.map((i: any) => (
             <Cards
-              id={i.id}
+              user={i.user}
+              val={props.num}
+              setVal={props.setVal}
+              id={i._id}
               title={i.title}
               description={i.description}
               image={i.image}
@@ -41,6 +47,15 @@ const Showproduct = (props: valTypes) => {
           />
         )}
       </div>
+
+      <Pagination
+      className="page"
+        defaultCurrent={6}
+        total={500}
+        onChange={(e) => {
+          setPage(e);
+        }}
+      />
     </div>
   );
 };

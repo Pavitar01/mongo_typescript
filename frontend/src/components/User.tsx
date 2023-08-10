@@ -10,7 +10,6 @@ const User = () => {
     if (val !== null) {
       val = JSON.parse(val);
     }
-    console.log(val)
     setUser(val);
   },[]);
   return (

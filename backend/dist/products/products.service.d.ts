@@ -22,21 +22,33 @@
 /// <reference types="mongoose/types/validation" />
 /// <reference types="mongoose/types/virtuals" />
 /// <reference types="mongoose/types/inferschematype" />
-import { Product } from './product.model';
-import { Model } from 'mongoose';
+/// <reference types="mongoose-paginate-v2" />
+import { Product } from "./product.model";
+import { Model } from "mongoose";
 export declare class ProductsService {
     private readonly ProductsModel;
     private products;
     constructor(ProductsModel: Model<Product>);
-    insertProduct(title: string, description: string, image: string): Promise<{
+    insertProduct(user: object, title: string, description: string, image: string): Promise<{
         result: import("mongoose").Document<unknown, {}, Product> & Product & {
             _id: import("mongoose").Types.ObjectId;
         };
         success: boolean;
         text: string;
     }>;
-    getProducts(): Promise<Product[]>;
+    getProducts(pageNo: number): Promise<(import("mongoose").Document<unknown, {}, Product> & Product & {
+        _id: import("mongoose").Types.ObjectId;
+    })[]>;
     getSingleProducts(prodId: string): Promise<{
+        text: string;
+        result?: undefined;
+    } | {
+        result: import("mongoose").Document<unknown, {}, Product> & Product & {
+            _id: import("mongoose").Types.ObjectId;
+        };
+        text: string;
+    }>;
+    deleteProduct(prodId: string): Promise<{
         text: string;
         result?: undefined;
     } | {

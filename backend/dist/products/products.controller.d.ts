@@ -23,25 +23,38 @@
 /// <reference types="mongoose/types/virtuals" />
 /// <reference types="mongoose" />
 /// <reference types="mongoose/types/inferschematype" />
-import { ProductsService } from './products.service';
+/// <reference types="mongoose-paginate-v2" />
+import { ProductsService } from "./products.service";
+import { Product } from "./product.model";
 export declare class ProductsController {
     private readonly ProductsService;
     constructor(ProductsService: ProductsService);
-    addProduct(prodTitle: string, prodDesc: string, prodImage: string): Promise<{
+    addProduct(prodTitle: string, prodDesc: string, prodUser: any, prodImage: string): Promise<{
         data: {
-            result: import("mongoose").Document<unknown, {}, import("./product.model").Product> & import("./product.model").Product & {
+            result: import("mongoose").Document<unknown, {}, Product> & Product & {
                 _id: import("mongoose").Types.ObjectId;
             };
             success: boolean;
             text: string;
         };
     }>;
-    getAllProducts(): Promise<import("./product.model").Product[]>;
+    getAllProducts(page: number): Promise<(import("mongoose").Document<unknown, {}, Product> & Product & {
+        _id: import("mongoose").Types.ObjectId;
+    })[]>;
     getSingleProducts(id: string): Promise<{
         text: string;
         result?: undefined;
     } | {
-        result: import("mongoose").Document<unknown, {}, import("./product.model").Product> & import("./product.model").Product & {
+        result: import("mongoose").Document<unknown, {}, Product> & Product & {
+            _id: import("mongoose").Types.ObjectId;
+        };
+        text: string;
+    }>;
+    deleteProduct(id: string): Promise<{
+        text: string;
+        result?: undefined;
+    } | {
+        result: import("mongoose").Document<unknown, {}, Product> & Product & {
             _id: import("mongoose").Types.ObjectId;
         };
         text: string;

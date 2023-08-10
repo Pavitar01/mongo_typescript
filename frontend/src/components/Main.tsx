@@ -1,6 +1,7 @@
 import { message } from "antd";
 import axios from "axios";
 import React, { useState } from "react";
+
 type valTypes = {
   setVal: any;
   val: boolean | undefined;
@@ -11,6 +12,10 @@ const Main = (props: valTypes) => {
   const [des, setDesc] = useState<string>("");
   // const [price, setPrice] = useState<string>();
   const [base64Image, setBase64Image] = useState<string | null>("");
+  let userAuth = localStorage.getItem("user");
+  if (userAuth !== null) {
+    userAuth = JSON.parse(userAuth);
+  }
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
@@ -18,8 +23,9 @@ const Main = (props: valTypes) => {
       message.warning("Please Fill All Feilds");
     } else {
       const data = await axios.post(
-        "http://localhost:3000/products/addproducts",
+        "http://localhost:3000/products/add-product",
         {
+          user: userAuth,
           title,
           description: des,
           // price,

@@ -21,8 +21,9 @@ let ProductsService = exports.ProductsService = class ProductsService {
         this.ProductsModel = ProductsModel;
         this.products = [];
     }
-    async insertProduct(title, description, image) {
+    async insertProduct(user, title, description, image) {
         const newProduct = new this.ProductsModel({
+            user,
             title,
             description,
             image: `data:image/jpeg;base64,${image}`,
@@ -31,29 +32,44 @@ let ProductsService = exports.ProductsService = class ProductsService {
         return {
             result,
             success: true,
-            text: 'Added SuccessFully',
+            text: "Added SuccessFully",
         };
     }
-    async getProducts() {
-        const result = await this.ProductsModel.find().exec();
+    async getProducts(pageNo) {
+        const resPerPage = 5;
+        const currPage = pageNo || 1;
+        const skip = resPerPage * (currPage - 1);
+        const result = await this.ProductsModel.find().skip(skip).limit(resPerPage);
         return result;
     }
     async getSingleProducts(prodId) {
         if (!prodId) {
             return {
-                text: 'Not found',
+                text: "Not found",
             };
         }
         const result = await this.ProductsModel.findById(prodId).exec();
         return {
             result,
-            text: 'Not found',
+            text: "Not found",
+        };
+    }
+    async deleteProduct(prodId) {
+        if (!prodId) {
+            return {
+                text: "Not found",
+            };
+        }
+        const result = await this.ProductsModel.findByIdAndDelete(prodId).exec();
+        return {
+            result,
+            text: "Deleted !",
         };
     }
 };
 exports.ProductsService = ProductsService = __decorate([
     (0, common_1.Injectable)(),
-    __param(0, (0, mongoose_1.InjectModel)('Product')),
+    __param(0, (0, mongoose_1.InjectModel)("Product")),
     __metadata("design:paramtypes", [mongoose_2.Model])
 ], ProductsService);
 //# sourceMappingURL=products.service.js.map
